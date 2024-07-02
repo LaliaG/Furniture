@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of furnitures</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="mb-4">List of furnitures</h1>
+    <a href="/furniture/form" class="btn btn-success mb-3">Add a new furniture</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="furniture : ${furnitures}">
+            <td th:text="${furniture.id}"></td>
+            <td th:text="${furniture.name}"></td>
+            <td th:text="${furniture.description}"></td>
+            <td th:text="${furniture.price}"></td>
+            <td th:text="${furniture.stock}"></td>
+            <td>
+                <a th:href="@{/furniture/form(id=${furniture.id})}" class="btn btn-info">Update</a>
+                <a th:href="@{/cart/add/{id}(id=${furniture.id})}" class="btn btn-primary">Add to cart</a>
+                <a th:href="@{/furniture/delete(id=${furniture.id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
